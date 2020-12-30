@@ -1,0 +1,43 @@
+$date
+	Wed Dec 30 13:51:57 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module test_decoder $end
+$var wire 1 ! out $end
+$var reg 4 " mux_in [3:0] $end
+$var reg 2 # sel [1:0] $end
+$scope module A $end
+$var wire 4 $ mux_in [3:0] $end
+$var wire 2 % sel [1:0] $end
+$var reg 1 ! out $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx %
+b1001 $
+bx #
+b1001 "
+x!
+$end
+#5
+1!
+b0 #
+b0 %
+#10
+b1 #
+b1 %
+#15
+0!
+b10 #
+b10 %
+#20
+b11 #
+b11 %
+#30
