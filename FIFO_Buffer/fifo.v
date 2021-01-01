@@ -56,6 +56,8 @@ module fifo_single_clock(fifo_cntr_reg, empty_reg, full_reg, buf_out, buf_in, rs
 			buf_out <= {(8){1'bz}};
 			end
 		end
+		
+		
 	always @(*)
 		begin
 		empty_next = empty_reg ;
