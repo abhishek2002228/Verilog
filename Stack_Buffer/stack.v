@@ -1,10 +1,10 @@
-module stack(error,size,buf_in,buf_out,empty,full,rst,push,pop,clk);
-	input wire [7:0] buf_io;
-	output reg [7:0] buf_out;
+module stack(error,size,buf_out,empty,full,buf_in,rst,push,pop,clk);
+	input wire [7:0] buf_in;
 	input wire clk,rst,push,pop; // push -> 0 , pop -> 1 
 	output wire [4:0] size; // max size = 16 ( 5 bits )
 	output wire empty, full;
 	output reg error;
+	output reg [7:0] buf_out;
 	
 	reg [7:0] buf_mem [15:0]; // 8x16
 	reg [4:0] SP_reg, SP_next; // extra bit for initial value of SP
@@ -17,7 +17,7 @@ module stack(error,size,buf_in,buf_out,empty,full,rst,push,pop,clk);
 	assign full = full_reg;
 	assign size = size_reg;
 	assign rd_en = pop & ~empty_reg;
-	assign wr_en = push & ~full_reg
+	assign wr_en = push & ~full_reg;
 	
 	always @(posedge clk, posedge rst)
 		begin
@@ -49,7 +49,7 @@ module stack(error,size,buf_in,buf_out,empty,full,rst,push,pop,clk);
 		else if(wr_en)
 			begin
 			error <= 0;
-			buf_mem[SP_reg - 1] <= buf_in;
+			buf_mem[SP_next] <= buf_in;
 			end
 		else
 			buf_out <= {(8){1'bz}};
@@ -81,8 +81,7 @@ module stack(error,size,buf_in,buf_out,empty,full,rst,push,pop,clk);
 					end
 		endcase
 		end
-		
-		
+endmodule
 		
 		
 		
